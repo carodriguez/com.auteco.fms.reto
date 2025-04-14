@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Gestión Clientes";
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Gestión Clientes</li>
+    </ol>
+</nav>
+
+<h3 class="mb-0"> Gestión de clientes</h3>
+<hr />
+<p>
+    La <strong>Gestión de Clientes</strong> le permite administrar fácilmente la información de sus clientes.
+    Podrá agregar nuevos clientes, actualizar sus datos, eliminarlos si es necesario y consultar su información en cualquier momento.
+   
+</p>
+
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+
+        <h4 class="card-title"> <i class="fa-solid fa-list text-secondary"></i> Listado</h4>
+
+        <div class="btn-toolbar ml-auto mb-0" role="toolbar" aria-label="Toolbar with button groups">
+
+            <div class="btn-group" role="group" aria-label="First group">
+                <a class="btn btn-secondary float-md-right text-white" data-bs-toggle="tooltip"
+                   data-bs-placement="top" title="Visualización de órdenes previas y estado" asp-action="AddCliente" asp-controller="GestionClientes">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Consulta Historial
+
+                </a>
+
+                <a class="btn btn-primary float-md-right text-white" data-bs-toggle="tooltip"
+                   data-bs-placement="top" title="Añadir cliente" asp-action="AddCliente" asp-controller="GestionClientes">
+                    <i class="fa-solid fa-plus"></i>
+                    Añadir nuevo cliente
+
+                </a>
+               
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+    <div class="card-body collapse show" id="listadoreaders">
+
+        <div class="table-responsive-lg">
+
+            <table id="tblClientes" class="table table-striped table-bordered table-sm" width="100%" cellspacing="0">
+
+                <thead class="thead-light">
+                    <tr class="text-center">
+
+                        <th>Identificador</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                   
+                        
+                        <th>Ir</th>
+                        
+                    </tr>
+                </thead>
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+</div>
+
+
+
+@section Scripts {
+
+
+    
+    <script src="~/js/indexclientes.js"></script>
+
+}
+
+

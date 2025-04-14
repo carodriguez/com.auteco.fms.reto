@@ -1,0 +1,75 @@
+﻿@model Fsm.Application.DTOs.Cliente.CreateClienteRequest
+
+@{
+    ViewData["Title"] = "Añadir Cliente";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="GestionClientes"><i class="fa-solid fa-house"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Añadir Cliente</li>
+    </ol>
+</nav>
+
+<h3 class="mb-0"> Añadir Cliente</h3>
+<hr />
+<p>
+    Complete los siguientes campos para crear un nuevo cliente. Los campos con asterisco (<span class="text-danger"><b>*</b></span>) son obligatorios.
+</p>
+
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h4 class="card-title"><i class="fa-solid fa-user-plus text-secondary"></i> Datos del Cliente</h4>
+    </div>
+
+    <form method="post" asp-controller="GestionClientes" asp-action="AddCliente" id="formAddCliente">
+        <div class="card-body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-6 mb-4">
+                    <label asp-for="Nombre">Nombre</label><span class="text-danger"> <b>*</b></span>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-sm-12 col-md-2 mb-4">
+                    <label asp-for="TipoCliente"></label><span class="text-danger"> <b>*</b></span>
+                    @Html.DropDownListFor(
+                             m => m.TipoCliente,
+                             new SelectList(
+                             Model.TiposCliente
+                             .Select(tc => new { Value = (int)tc, Text = tc.ToString() })
+                             .OrderBy(item => item.Value),
+                             "Value",
+                             "Text"
+                             ),
+                             new { @class = "form-control" }
+                             )
+                    <span asp-validation-for="TipoCliente" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12 d-flex justify-content-md-start">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <a asp-action="Index" asp-controller="GestionClientes" class="btn btn-secondary ml-2">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/addcliente.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+ 
+}
+

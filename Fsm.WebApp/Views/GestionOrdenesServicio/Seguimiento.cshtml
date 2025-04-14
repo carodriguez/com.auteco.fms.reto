@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Seguimiento de Órdenes de Servicio";
+}
+
+<style>
+    /* Estilos para el modal de detalles de orden */
+    .swal2-orden-detalles {
+        font-size: 14px;
+    }
+
+        .swal2-orden-detalles .card {
+            margin-bottom: 15px;
+            border: 1px solid rgba(0,0,0,.125);
+        }
+
+        .swal2-orden-detalles .card-header {
+            background-color: #f8f9fa;
+            padding: 0.5rem 1rem;
+        }
+
+        .swal2-orden-detalles .card-title {
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+        .swal2-orden-detalles .card-body {
+            padding: 1rem;
+        }
+
+        .swal2-orden-detalles p {
+            margin-bottom: 0.5rem;
+        }
+
+        .swal2-orden-detalles .list-group-item {
+            padding: 0.5rem 1rem;
+        }
+
+</style>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house"></i></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Seguimiento de Órdenes de Servicio</li>
+    </ol>
+</nav>
+
+<h3 class="mb-0">Seguimiento de Órdenes de Servicio</h3>
+<hr />
+<p>
+    La <strong>ventana de seguimiento</strong> le permite visualizar y gestionar las órdenes de servicio existentes.
+    Podrá consultar detalles, cambiar el estado de las órdenes y eliminarlas si es necesario.
+</p>
+
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h4 class="card-title"><i class="fa-solid fa-list text-secondary"></i> Listado de Órdenes</h4>
+
+        <div class="btn-toolbar ml-auto mb-0" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group" role="group" aria-label="First group">
+                <a class="btn btn-primary float-md-right text-white" data-bs-toggle="tooltip"
+                   data-bs-placement="top" title="Crear nueva orden de servicio" asp-action="AddOrdenServicio" asp-controller="GestionOrdenesServicio">
+                    <i class="fa-solid fa-plus"></i>
+                    Crear Nueva Orden
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body collapse show" id="listadoOrdenes">
+        <div class="table-responsive-lg">
+            <table id="tblOrdenes" class="table table-striped table-bordered table-sm" width="100%" cellspacing="0">
+                <thead class="thead-light">
+                    <tr class="text-center">
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Estado</th>
+                        <th>Fecha de Creación</th>
+                        <th>Fecha Atención Est</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @* Aquí se llenarán las filas dinámicamente desde el backend o mediante JavaScript *@
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/seguimientoordenesdeservicio.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
